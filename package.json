@@ -1,0 +1,26 @@
+{
+  "name": "uptask-nodejs",
+  "version": "1.0.0",
+  "description": "Proyecto UpTask con Node y MVC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZunoRick/UpTask-NodeJS.git"
+  },
+  "author": "Ricardo Zuno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZunoRick/UpTask-NodeJS/issues"
+  },
+  "homepage": "https://github.com/ZunoRick/UpTask-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
