@@ -14,6 +14,9 @@ app.set('view engine', 'pug');
 //Añadir la carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
 
+//Habilitar la lectura de fornularios
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/', routes());
 
 app.listen(4000);
