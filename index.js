@@ -5,6 +5,9 @@ const path = require('path');
 //Crear la conexión a la base de datos
 const db = require('./config/db');
 
+//helpers con algunas funciones
+const helpers = require('./helpers');
+
 //Importar el modelo
 require('./models/Proyectos');
 
@@ -23,6 +26,12 @@ app.set('view engine', 'pug');
 
 //Añadir la carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
+
+//Pasar var dump a la aplicación
+app.use((req, res, next) => {
+    res.locals.vardump = helpers.vardump;
+    next();
+});
 
 //Habilitar la lectura de fornularios
 app.use(express.urlencoded({ extended: true }));
