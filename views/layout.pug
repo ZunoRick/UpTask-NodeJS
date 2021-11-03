@@ -9,7 +9,8 @@ html(lang="en")
         title #{nombrePagina}
     body
         header.barra
-            h1 UpTask - Administrador de Proyectos
+            a(href="/") 
+                h1 UpTask - Administrador de Proyectos
             a(href="#")  Cerrar Sesión
         
         main.contenedor
@@ -23,6 +24,7 @@ html(lang="en")
                         if(proyectos.length)
                             each proyecto in proyectos
                                 li
-                                    a(href=`${proyecto.url}`)= proyecto.nombre
+                                    a(href=`/proyectos/${proyecto.url}`)= proyecto.nombre
 
             block contenido
+            //- pre= vardump(proyectos)

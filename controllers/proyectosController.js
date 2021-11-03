@@ -8,13 +8,17 @@ exports.proyectosHome = async (req, res) =>{
     });
 }
 
-exports.formularioProyecto = (req, res) => {
+exports.formularioProyecto = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
     res.render('nuevoProyecto', {
-        nombrePagina: 'Nuevo Proyecto'
+        nombrePagina: 'Nuevo Proyecto',
+        proyectos
     });
 }
 
 exports.nuevoProyecto = async (req, res) =>{
+    const proyectos = await Proyectos.findAll();
+
     //Enviar a la consola lo que el usuario escriba
     // console.log(req.body);
 
@@ -31,7 +35,8 @@ exports.nuevoProyecto = async (req, res) =>{
     if (errores.length > 0) {
         res.render('nuevoProyecto', {
             nombrePagina: 'Nuevo Proyecto',
-            errores
+            errores,
+            proyectos
         });
     } else{
         //No hay errores
@@ -39,4 +44,21 @@ exports.nuevoProyecto = async (req, res) =>{
         const proyecto = await Proyectos.create({ nombre });
         res.redirect('/');
     }
+}
+
+exports.proyectoPorUrl = async (req, res, next) =>{
+    const proyectos = await Proyectos.findAll();
+    const proyecto = await Proyectos.findOne({
+        where: {
+            url: req.params.url
+        }
+    });
+    if (!proyecto) return next();
+
+    //render a la vista
+    res.render('tareas', {
+        nombrePagina: `${proyecto.nombre}`,
+        proyectos,
+        proyecto
+    });
 }
