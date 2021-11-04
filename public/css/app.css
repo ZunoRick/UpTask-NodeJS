@@ -100,6 +100,7 @@ body {
     float: right;
     background-color: red!important;
     color: white;
+    padding: 1rem;
 }
 .campo a {
     color: black;
