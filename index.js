@@ -4,6 +4,7 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./config/passport');
 
 //Crear la conexión a la base de datos
 const db = require('./config/db');
@@ -42,10 +43,13 @@ app.use(cookieParser());
 
 //Sessiones nos permiten navegar entre distintas páginas sin volvernos a autenticar
 app.use(session({
-    secret: 'supersecreto',
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Pasar var dump a la aplicación
 app.use((req, res, next) => {
